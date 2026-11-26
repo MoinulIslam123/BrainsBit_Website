@@ -1,0 +1,14 @@
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
+import { FloatingActionsComponent } from '../floating-actions/floating-actions.component';
+
+@Component({
+  selector: 'app-app-layout',
+  standalone: true,
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, FloatingActionsComponent],
+  templateUrl: './app-layout.component.html',
+  styleUrls: ['./app-layout.component.css'],
+})
+export class AppLayoutComponent {}

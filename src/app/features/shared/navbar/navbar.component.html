@@ -1,0 +1,253 @@
+<header class="animate-slide-down fixed inset-x-0 top-0 z-50">
+  <!-- Top info bar (collapses on scroll) -->
+  <div
+    class="grid transition-all duration-300 max-sm:hidden"
+    [class]="scrolled() ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr] opacity-100'"
+  >
+    <div class="overflow-hidden">
+      <div class="bg-ink">
+        <div
+          class="wrap flex items-center justify-between py-2 text-xs text-white/80"
+        >
+          <div class="flex items-center gap-5">
+            <a
+              [href]="'tel:' + site.phones[0].replace(' ', '')"
+              class="flex items-center gap-1.5 transition hover:text-brand-sky"
+            >
+              <i class="fa-solid fa-phone text-[0.7rem]"></i>
+              {{ site.phones[0] }}
+            </a>
+            <a
+              [href]="site.whatsappLink"
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-1.5 transition hover:text-brand-sky"
+            >
+              <span class="relative flex h-2 w-2">
+                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-70"></span>
+                <span class="relative inline-flex h-2 w-2 rounded-full bg-green-400"></span>
+              </span>
+              WhatsApp
+            </a>
+            <a
+              [href]="'mailto:' + site.email"
+              class="hidden items-center gap-1.5 transition hover:text-brand-sky lg:flex"
+            >
+              <i class="fa-solid fa-envelope text-[0.7rem]"></i>
+              {{ site.email }}
+            </a>
+          </div>
+          <p class="hidden tracking-wide text-white/70 md:block">{{ site.tagline }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main bar -->
+  <div
+    class="relative transition-all duration-300"
+    [class]="
+      scrolled()
+        ? 'border-b border-line/80 bg-white/85 shadow-[0_18px_40px_-24px_rgba(11,18,32,0.35)] backdrop-blur-xl'
+        : 'border-b border-transparent bg-transparent'
+    "
+  >
+    <div
+      class="wrap flex items-center justify-between gap-4 transition-all duration-300"
+      [class]="scrolled() ? 'h-16' : 'h-20'"
+    >
+      <!-- Logo -->
+      <a routerLink="/" class="flex items-center" (click)="close()" aria-label="BrainsBit home">
+        <img
+          src="assets/BrainsBit_Logo2.png"
+          alt="BrainsBit"
+          class="h-11 w-auto transition-transform duration-300 hover:scale-105"
+        />
+      </a>
+
+      <!-- Desktop links -->
+      <nav class="hidden items-center lg:flex" aria-label="Main">
+        @for (l of navDesktop; track l.path) {
+          @if (l.path === '/services') {
+            <div
+              class="relative"
+              (mouseenter)="onServicesEnter()"
+              (mouseleave)="onServicesLeave()"
+            >
+              <a
+                routerLink="/services"
+                routerLinkActive="active-link"
+                class="nav-link inline-flex items-center gap-2 px-3.5 py-2 text-sm font-medium tracking-wide text-ink/75 transition-colors"
+                >{{ l.label }}
+                <i
+                  class="fa-solid fa-chevron-down text-[0.55rem] transition-transform duration-300"
+                  [class.rotate-180]="servicesOpen()"
+                ></i
+              ></a>
+
+              <!-- service panel (the pt-4 keeps the hover area unbroken) -->
+              <div
+                class="absolute left-1/2 top-full w-[34rem] -translate-x-1/2 pt-4 transition-all duration-300"
+                [class]="
+                  servicesOpen()
+                    ? 'translate-y-0 opacity-100'
+                    : 'pointer-events-none translate-y-2 opacity-0'
+                "
+              >
+                <div class="grid grid-cols-2 gap-1 rounded-3xl border border-line bg-white p-2.5 shadow-lift">
+                  @for (s of services; track s.slug) {
+                    <a
+                      [routerLink]="['/services', s.slug]"
+                      (click)="servicesOpen.set(false)"
+                      class="flex gap-3 rounded-2xl p-3.5 transition-colors hover:bg-brand-soft"
+                    >
+                      <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                        <i class="fa-solid" [class]="s.icon"></i>
+                      </span>
+                      <span>
+                        <span class="block text-[0.95rem] font-semibold leading-snug text-ink">{{ s.navLabel }}</span>
+                        <span class="mt-0.5 block text-sm leading-snug text-muted">{{ s.short }}</span>
+                      </span>
+                    </a>
+                  }
+                </div>
+              </div>
+            </div>
+          } @else {
+            <a
+              [routerLink]="l.path"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link px-3.5 py-2 text-sm font-medium tracking-wide text-ink/75 transition-colors"
+              >{{ l.label }}</a
+            >
+          }
+        }
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- CTA -->
+        <a routerLink="/contact" class="btn btn-primary group hidden !py-2.5 lg:inline-flex">
+          Start a project
+          <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+        </a>
+
+        <!-- Hamburger -->
+        <button
+          type="button"
+          (click)="toggle()"
+          aria-label="Open menu"
+          class="grid h-11 w-11 place-items-center rounded-xl border border-line bg-white text-ink shadow-soft transition hover:border-brand hover:text-brand lg:hidden"
+        >
+          <i class="fa-solid fa-bars-staggered text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scroll progress -->
+    <div
+      class="absolute inset-x-0 bottom-0 h-[2px] bg-transparent transition-opacity duration-300"
+      [class]="scrolled() ? 'opacity-100' : 'opacity-0'"
+    >
+      <div
+        class="h-full bg-gradient-to-r from-brand via-brand-bright to-sky-200"
+        [style.width.%]="progress()"
+      ></div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="fixed inset-0 z-[60] lg:hidden" [class.pointer-events-none]="!open()">
+  <div
+    class="absolute inset-0 bg-ink/60 backdrop-blur-sm transition-opacity duration-300"
+    [class]="open() ? 'opacity-100' : 'opacity-0'"
+    (click)="close()"
+  ></div>
+
+  <aside
+    class="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-ink text-white shadow-2xl transition-transform duration-500 ease-out"
+    [class]="open() ? 'translate-x-0' : 'translate-x-full'"
+    [attr.aria-hidden]="!open()"
+  >
+    <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
+      <img
+        src="assets/BrainsBit_Logo2.png"
+        alt="BrainsBit"
+        class="h-10 w-auto rounded-xl bg-white px-3 py-1.5"
+      />
+      <button
+        type="button"
+        (click)="close()"
+        aria-label="Close menu"
+        class="grid h-10 w-10 place-items-center rounded-xl border border-white/20 bg-white/10 transition hover:bg-white/20"
+      >
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-3 py-3" aria-label="Mobile">
+      @for (l of nav; track l.path; let i = $index) {
+        <div
+          class="transition-all duration-500"
+          [class]="open() ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'"
+          [style.transition-delay.ms]="open() ? 120 + i * 50 : 0"
+        >
+          <div class="flex items-center">
+            <a
+              [routerLink]="l.path"
+              (click)="close()"
+              routerLinkActive="drawer-active"
+              [routerLinkActiveOptions]="{ exact: l.path === '/' }"
+              class="drawer-link group flex flex-1 items-center gap-4 rounded-xl px-4 py-3 transition-all"
+            >
+              <span class="text-xs font-semibold text-brand-bright">0{{ i + 1 }}</span>
+              <span class="font-medium">{{ l.label }}</span>
+            </a>
+            @if (l.path === '/services') {
+              <button
+                type="button"
+                (click)="toggleServices()"
+                aria-label="Toggle services list"
+                [attr.aria-expanded]="servicesOpen()"
+                class="grid h-11 w-11 place-items-center rounded-xl text-white/80 hover:bg-white/10"
+              >
+                <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300" [class.rotate-180]="servicesOpen()"></i>
+              </button>
+            }
+          </div>
+
+          @if (l.path === '/services') {
+            <div
+              class="grid transition-all duration-300"
+              [class]="servicesOpen() ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'"
+            >
+              <div class="overflow-hidden">
+                <div class="mb-1 ml-8 border-l border-white/15 pl-2">
+                  @for (s of services; track s.slug) {
+                    <a
+                      [routerLink]="['/services', s.slug]"
+                      (click)="close()"
+                      class="block rounded-lg px-3 py-2.5 text-sm text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                      >{{ s.navLabel }}</a
+                    >
+                  }
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </nav>
+
+    <div class="space-y-3 border-t border-white/10 px-5 py-5 text-sm">
+      <a [href]="'tel:' + site.phones[0].replace(' ', '')" class="flex items-center gap-3 text-white/80 hover:text-brand-sky">
+        <i class="fa-solid fa-phone w-4 text-brand-bright"></i>{{ site.phones[0] }}
+      </a>
+      <a [href]="site.whatsappLink" target="_blank" rel="noopener" class="flex items-center gap-3 text-white/80 hover:text-brand-sky">
+        <i class="fa-brands fa-whatsapp w-4 text-base text-brand-bright"></i>{{ site.whatsapp }}
+      </a>
+      <a routerLink="/contact" (click)="close()" class="btn btn-primary w-full">Start a project</a>
+    </div>
+  </aside>
+</div>

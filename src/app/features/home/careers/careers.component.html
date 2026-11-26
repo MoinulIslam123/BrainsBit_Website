@@ -1,0 +1,81 @@
+<app-page-header
+  title="Careers"
+  subtitle="Come work with us"
+  scene="careers"
+>
+  <button type="button" (click)="scrollToOpenings()" class="btn btn-ink">
+    View jobs <i class="fa-solid fa-arrow-down text-xs"></i>
+  </button>
+</app-page-header>
+
+<!-- JOIN US -->
+<section class="wrap section">
+  <div appReveal="up" class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <h2 class="t-h2">Join us</h2>
+    <p class="lead">{{ joinUs }}</p>
+  </div>
+</section>
+
+<!-- CURRENT OPENINGS -->
+<section #openings class="wrap scroll-mt-28 pb-20 md:pb-28">
+  <h2 appReveal="up" class="t-h2">Current openings</h2>
+
+  <div appReveal="up" [revealDelay]="100" class="mt-10 flex flex-col gap-3 rounded-3xl border border-line bg-white p-3 shadow-soft lg:flex-row">
+    <label class="relative flex-1">
+      <span class="sr-only">Search jobs</span>
+      <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+      <input
+        type="text"
+        name="search"
+        placeholder="Search by job title"
+        [(ngModel)]="query"
+        class="form-field !pl-11"
+      />
+    </label>
+
+    <label class="lg:w-64">
+      <span class="sr-only">Filter by location</span>
+      <select name="location" [(ngModel)]="location" class="form-field">
+        <option value="">All locations</option>
+        <option *ngFor="let l of locations" [value]="l">{{ l }}</option>
+      </select>
+    </label>
+
+    <label class="lg:w-64">
+      <span class="sr-only">Filter by department</span>
+      <select name="department" [(ngModel)]="department" class="form-field">
+        <option value="">All departments</option>
+        <option *ngFor="let d of departments" [value]="d">{{ d }}</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- column titles (desktop) -->
+  <div class="mt-8 hidden grid-cols-12 gap-4 px-7 text-sm font-semibold text-ink md:grid">
+    <p class="col-span-5">Job title</p>
+    <p class="col-span-2">Location</p>
+    <p class="col-span-2">Department</p>
+    <p class="col-span-3">Employment type</p>
+  </div>
+
+  <ul class="mt-3 space-y-3">
+    <li
+      *ngFor="let job of filteredJobs; let i = index"
+      appReveal="up"
+      [revealDelay]="i * 90"
+      class="job-row grid gap-x-4 gap-y-1 rounded-2xl border border-line bg-white px-6 py-5 transition-colors hover:border-brand/50 md:grid-cols-12 md:items-center"
+    >
+      <p class="font-display text-lg font-semibold text-ink md:col-span-5">{{ job.title }}</p>
+      <p class="md:col-span-2"><i class="fa-solid fa-location-dot mr-2 text-brand md:hidden"></i>{{ job.location }}</p>
+      <p class="md:col-span-2"><i class="fa-solid fa-briefcase mr-2 text-brand md:hidden"></i>{{ job.department }}</p>
+      <p class="md:col-span-3"><i class="fa-solid fa-clock mr-2 text-brand md:hidden"></i>{{ job.type }}</p>
+    </li>
+  </ul>
+
+  <p
+    *ngIf="filteredJobs.length === 0"
+    class="mt-3 rounded-2xl border border-dashed border-line bg-white px-6 py-10 text-center"
+  >
+    No openings match your search. Clear the filters to see all roles.
+  </p>
+</section>

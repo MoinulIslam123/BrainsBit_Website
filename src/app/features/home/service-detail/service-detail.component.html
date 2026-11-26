@@ -1,0 +1,27 @@
+<ng-container *ngIf="service && detail">
+  <app-page-header
+    [title]="service.navLabel"
+    [subtitle]="service.short"
+    [scene]="service.scene"
+    [crumbs]="[{ label: 'Services', link: '/services' }]"
+  ></app-page-header>
+
+  <!-- overview -->
+  <section class="wrap section">
+    <p
+      class="max-w-4xl font-display text-[clamp(1.5rem,2.9vw,2.4rem)] font-medium leading-[1.25] tracking-[-0.025em] text-ink"
+    >
+      {{ service.text }}
+    </p>
+  </section>
+
+  <app-feature-grid
+    [title]="detail.featuresTitle"
+    [items]="detail.features"
+    [layout]="detail.layout"
+  ></app-feature-grid>
+
+  <app-engagement-model></app-engagement-model>
+
+  <app-call-us></app-call-us>
+</ng-container>

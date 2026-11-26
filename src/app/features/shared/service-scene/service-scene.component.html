@@ -1,0 +1,213 @@
+<div appInView class="absolute inset-0" aria-hidden="true">
+  <div
+    class="absolute left-1/2 top-1/2 h-[360px] w-[460px] -translate-x-1/2 -translate-y-1/2 scale-[0.6] min-[420px]:scale-[0.72] sm:scale-[0.92] lg:scale-100"
+  >
+    @switch (kind) {
+      <!-- ============ CUSTOM SOFTWARE: code editor ============ -->
+      @case ('custom') {
+        <div class="absolute left-0 top-8 w-[430px] overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[0_44px_80px_-30px_rgba(0,0,0,0.75)]">
+          <div class="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-white/20"></span>
+            <span class="ml-4 rounded-md bg-white/10 px-3 py-1 font-mono text-[11px] text-white/80">order.service.ts</span>
+            <span class="px-2 font-mono text-[11px] text-white/35">app.routes.ts</span>
+          </div>
+          <div class="px-5 py-4 font-mono text-[12px] leading-[1.85] text-white/85">
+            @for (line of codeLines; track $index) {
+              <div class="animate-line-in flex whitespace-pre" [style.animation-delay.s]="0.3 + $index * 0.32">
+                <span class="w-7 shrink-0 select-none text-white/25">{{ $index + 1 }}</span>
+                <span>
+                  @for (seg of line; track $index) {
+                    <span [class]="seg.c ?? ''">{{ seg.t }}</span>
+                  }
+                  @if ($last) {
+                    <span class="ml-0.5 inline-block h-[15px] w-[7px] translate-y-[3px] animate-blink bg-brand-bright"></span>
+                  }
+                </span>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="absolute bottom-5 right-0 animate-pop-in" style="animation-delay: 3.4s">
+          <div class="animate-float flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-lift backdrop-blur-xl">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-mint/25 text-mint"><i class="fa-solid fa-check text-sm"></i></span>
+            <div>
+              <p class="text-sm font-semibold leading-tight">Build passed</p>
+              <p class="text-xs text-white/65">All checks green</p>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -top-1 right-6 animate-pop-in" style="animation-delay: 1s">
+          <div class="animate-float flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3.5 py-2 text-xs font-medium text-white backdrop-blur-xl" style="animation-delay: -2s">
+            <i class="fa-solid fa-code-branch"></i> feature/orders
+          </div>
+        </div>
+      }
+
+      <!-- ============ WEB: browser wireframe ============ -->
+      @case ('web') {
+        <div class="absolute left-2 top-5 w-[420px] overflow-hidden rounded-2xl border border-white/20 bg-white shadow-[0_44px_80px_-30px_rgba(0,30,80,0.7)]">
+          <div class="flex items-center gap-1.5 border-b border-line bg-paper px-4 py-2.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+            <span class="ml-3 flex-1 rounded-md border border-line bg-white px-3 py-1 text-[10px] text-slate-400">yourbrand.com</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center gap-3">
+              <span class="h-5 w-5 rounded-md bg-brand"></span>
+              <span class="h-2 w-10 rounded bg-slate-200"></span>
+              <span class="h-2 w-10 rounded bg-slate-200"></span>
+              <span class="h-2 w-10 rounded bg-slate-200"></span>
+              <span class="ml-auto h-6 w-16 rounded-full bg-ink"></span>
+            </div>
+            <div class="mt-5 grid grid-cols-[1.1fr_1fr] items-center gap-4">
+              <div>
+                <div class="shim h-3.5 w-11/12 rounded"></div>
+                <div class="shim mt-2 h-3.5 w-7/12 rounded"></div>
+                <div class="mt-3 h-2 w-full rounded bg-slate-100"></div>
+                <div class="mt-1.5 h-2 w-4/5 rounded bg-slate-100"></div>
+                <div class="relative mt-4 inline-block">
+                  <div class="h-7 w-24 rounded-full bg-brand"></div>
+                  <svg class="cursor absolute left-14 top-3 h-6 w-6 drop-shadow-md" viewBox="0 0 24 24" fill="#0b1220" stroke="#fff" stroke-width="1.5"><path d="M5 3l14 7-6 2-2 6z" stroke-linejoin="round" /></svg>
+                </div>
+              </div>
+              <div class="relative h-28 overflow-hidden rounded-xl bg-gradient-to-br from-brand-sky via-brand-bright to-brand">
+                <span class="absolute right-4 top-4 h-8 w-8 rounded-full bg-white/70"></span>
+                <span class="absolute -bottom-6 left-3 h-20 w-20 rotate-12 rounded-2xl bg-white/25"></span>
+                <span class="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-white/20"></span>
+              </div>
+            </div>
+            <div class="mt-5 grid grid-cols-3 gap-3">
+              @for (n of [0, 1, 2]; track n) {
+                <div class="rounded-xl border border-line p-3">
+                  <div class="h-5 w-5 rounded-md bg-brand-soft"></div>
+                  <div class="shim mt-2 h-2 w-4/5 rounded" [style.animation-delay.s]="n * 0.3"></div>
+                  <div class="mt-1.5 h-2 w-3/5 rounded bg-slate-100"></div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute -bottom-2 -left-1 animate-pop-in" style="animation-delay: 1.6s">
+          <div class="animate-float flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-lift">
+            <svg class="h-9 w-9 -rotate-90" viewBox="0 0 36 36" fill="none">
+              <circle cx="18" cy="18" r="15" stroke="#e3e9f2" stroke-width="3" />
+              <circle class="score" cx="18" cy="18" r="15" stroke="#22c58b" stroke-width="3" stroke-linecap="round" pathLength="100" />
+            </svg>
+            <div>
+              <p class="text-sm font-semibold leading-tight text-ink">Performance 98</p>
+              <p class="text-xs text-muted">Fast on every device</p>
+            </div>
+          </div>
+        </div>
+        <div class="absolute right-0 top-0 animate-pop-in" style="animation-delay: 1.1s">
+          <div class="animate-float flex items-center gap-2.5 rounded-full border border-white/25 bg-white/15 px-4 py-2.5 text-white backdrop-blur-xl" style="animation-delay: -3s">
+            <i class="fa-solid fa-desktop text-xs"></i><i class="fa-solid fa-tablet-screen-button text-xs"></i><i class="fa-solid fa-mobile-screen text-xs"></i>
+            <span class="text-xs font-medium">Responsive</span>
+          </div>
+        </div>
+      }
+
+      <!-- ============ MOBILE: two phones ============ -->
+      @case ('mobile') {
+        <div class="animate-rise absolute left-6 top-2 w-[170px] -rotate-6" style="animation-delay: 0.1s">
+          <div class="animate-float rounded-[2.2rem] border border-white/20 bg-ink p-1.5 shadow-[0_40px_70px_-28px_rgba(0,0,0,0.8)]" style="animation-duration: 7s">
+            <div class="overflow-hidden rounded-[1.8rem] bg-white px-3.5 pb-4 pt-3">
+              <div class="mx-auto mb-3 h-1.5 w-12 rounded-full bg-slate-200"></div>
+              <p class="font-display text-sm font-bold text-ink">Overview</p>
+              <div class="relative mx-auto mt-3 h-24 w-24">
+                <svg class="h-24 w-24 -rotate-90" viewBox="0 0 36 36" fill="none">
+                  <circle cx="18" cy="18" r="15" stroke="#e3e9f2" stroke-width="3.5" />
+                  <circle class="score" style="--to: 28" cx="18" cy="18" r="15" stroke="#0072ce" stroke-width="3.5" stroke-linecap="round" pathLength="100" />
+                </svg>
+                <span class="absolute inset-0 grid place-items-center font-display text-lg font-bold text-ink">72%</span>
+              </div>
+              @for (w of ['w-3/4', 'w-2/3', 'w-4/5']; track w) {
+                <div class="mt-3 flex items-center gap-2">
+                  <span class="h-6 w-6 rounded-full bg-brand-soft"></span>
+                  <div class="flex-1 space-y-1">
+                    <div class="h-1.5 rounded bg-slate-200" [ngClass]="w"></div>
+                    <div class="h-1.5 w-1/3 rounded bg-slate-100"></div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="animate-rise absolute right-4 top-14 w-[170px] rotate-6" style="animation-delay: 0.35s">
+          <div class="animate-float rounded-[2.2rem] border border-white/20 bg-ink p-1.5 shadow-[0_40px_70px_-28px_rgba(0,0,0,0.8)]" style="animation-duration: 8s; animation-delay: -3s">
+            <div class="relative h-[270px] overflow-hidden rounded-[1.8rem] bg-gradient-to-b from-[#dcecff] to-[#bfe0ff]">
+              <span class="absolute left-4 top-10 h-12 w-24 rotate-12 rounded-lg bg-white/70"></span>
+              <span class="absolute right-3 top-24 h-16 w-10 -rotate-6 rounded-lg bg-white/60"></span>
+              <span class="absolute left-8 top-28 h-1.5 w-28 -rotate-12 rounded bg-brand/40"></span>
+              <span class="absolute left-[4.2rem] top-16 grid h-8 w-8 place-items-center rounded-full bg-brand text-white shadow-lg"><i class="fa-solid fa-location-dot text-xs"></i></span>
+              <span class="absolute left-[4.2rem] top-16 h-8 w-8 animate-pulse-ring rounded-full bg-brand/50"></span>
+              <div class="absolute inset-x-2 bottom-2 rounded-2xl bg-white p-3 shadow-lift">
+                <div class="h-2 w-2/3 rounded bg-slate-200"></div>
+                <div class="mt-1.5 h-2 w-1/2 rounded bg-slate-100"></div>
+                <div class="mt-3 rounded-lg bg-brand py-1.5 text-center text-[10px] font-semibold text-white">Confirm</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-3 left-2 animate-pop-in" style="animation-delay: 1s">
+          <div class="animate-float flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-xl" style="animation-delay: -1s">
+            <i class="fa-brands fa-apple text-base"></i> iOS
+          </div>
+        </div>
+        <div class="absolute right-2 top-0 animate-pop-in" style="animation-delay: 1.3s">
+          <div class="animate-float flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2.5 text-sm font-medium text-white backdrop-blur-xl" style="animation-delay: -4s">
+            <i class="fa-brands fa-android text-base"></i> Android
+          </div>
+        </div>
+      }
+
+      <!-- ============ QA: test run ============ -->
+      @case ('qa') {
+        <div class="absolute left-0 top-6 w-[430px] overflow-hidden rounded-2xl border border-white/10 bg-ink shadow-[0_44px_80px_-30px_rgba(0,0,0,0.75)]">
+          <div class="flex items-center justify-between border-b border-white/10 px-5 py-3">
+            <p class="font-display text-sm font-semibold text-white">Test suite</p>
+            <p class="flex items-center gap-2 text-xs text-white/60"><span class="h-2 w-2 animate-pulse rounded-full bg-mint"></span> Running</p>
+          </div>
+          <div class="px-5 pt-4">
+            <div class="h-1.5 overflow-hidden rounded-full bg-white/10">
+              <div class="h-full origin-left animate-fill-bar rounded-full bg-gradient-to-r from-brand-bright to-mint" style="animation-duration: 4.6s; animation-delay: 0.3s"></div>
+            </div>
+          </div>
+          <ul class="space-y-1 px-3 py-4">
+            @for (t of tests; track t; let i = $index) {
+              <li class="animate-line-in flex items-center gap-3 rounded-lg px-2 py-1.5" [style.animation-delay.s]="0.5 + i * 0.7">
+                <span class="animate-pop-in grid h-5 w-5 place-items-center rounded-full bg-mint/20 text-mint" [style.animation-delay.s]="0.9 + i * 0.7">
+                  <i class="fa-solid fa-check text-[10px]"></i>
+                </span>
+                <span class="flex-1 text-[13px] text-white/85">{{ t }}</span>
+                <span class="font-mono text-[11px] text-white/35">0.{{ 3 + i }}s</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="absolute bottom-3 right-0 animate-pop-in" style="animation-delay: 5s">
+          <div class="animate-float flex items-center gap-3 rounded-2xl border border-white/25 bg-white/15 px-4 py-3 text-white shadow-lift backdrop-blur-xl">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-mint/25 text-mint"><i class="fa-solid fa-shield-halved text-sm"></i></span>
+            <div>
+              <p class="text-sm font-semibold leading-tight">128 passed · 0 failed</p>
+              <p class="text-xs text-white/65">Ready to release</p>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -top-1 right-4 animate-pop-in" style="animation-delay: 1.4s">
+          <div class="animate-float flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-3.5 py-2 text-xs font-medium text-white backdrop-blur-xl" style="animation-delay: -2s">
+            <i class="fa-solid fa-bug text-amber"></i> Regression caught
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

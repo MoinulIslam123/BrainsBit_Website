@@ -1,0 +1,61 @@
+<section class="bg-paper">
+  <div class="wrap section">
+    <!-- PARALLEL BENEFITS -->
+    <ng-container *ngIf="layout === 'grid'; else steps">
+      <div class="max-w-3xl" appReveal="up">
+        <h2 class="t-h2">{{ title }}</h2>
+        <p *ngIf="intro" class="lead mt-4">{{ intro }}</p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2" [ngClass]="{ 'lg:grid-cols-3': thirds }">
+        <div
+          *ngFor="let item of items; let i = index"
+          appReveal="up"
+          [revealDelay]="(i % 3) * 90"
+          class="rounded-3xl border border-line bg-white p-8 shadow-soft md:p-9"
+        >
+          <span
+            class="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-brand to-brand-bright text-xl text-white shadow-[0_12px_28px_-12px_rgba(0,114,206,0.9)]"
+          >
+            <i [class]="'fa-solid ' + item.icon"></i>
+          </span>
+          <h3 class="t-h3 mt-7">{{ item.title }}</h3>
+          <p class="mt-3 leading-relaxed">{{ item.text }}</p>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- SEQUENCE (numbered, joined by a trace line like the logo's circuit) -->
+    <ng-template #steps>
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        <div class="lg:sticky lg:top-32 lg:self-start" appReveal="up">
+          <h2 class="t-h2">{{ title }}</h2>
+          <p *ngIf="intro" class="lead mt-4">{{ intro }}</p>
+        </div>
+
+        <ol>
+          <li
+            *ngFor="let item of items; let i = index; let last = last"
+            appReveal="up"
+            [revealDelay]="i * 70"
+            class="relative flex gap-6 pb-10 last:pb-0"
+          >
+            <span
+              *ngIf="!last"
+              class="absolute left-5 top-12 -ml-px h-[calc(100%-3rem)] w-px bg-gradient-to-b from-brand/60 to-line"
+              aria-hidden="true"
+            ></span>
+            <span
+              class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-brand font-display text-sm font-bold text-white"
+              >{{ i + 1 }}</span
+            >
+            <div class="pt-1">
+              <h3 class="t-h3">{{ item.title }}</h3>
+              <p class="mt-2 leading-relaxed">{{ item.text }}</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </ng-template>
+  </div>
+</section>

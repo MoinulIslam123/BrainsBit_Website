@@ -1,0 +1,24 @@
+<app-page-header
+  title="Our services"
+  subtitle="Custom software, web and mobile applications, and quality assurance."
+  scene="services"
+></app-page-header>
+
+<section class="wrap pt-6 md:pt-12">
+  <p class="lead max-w-3xl">{{ intro }}</p>
+</section>
+
+<section class="wrap pb-8 pt-6 md:pb-16">
+  <app-service-block
+    *ngFor="let s of services; let i = index"
+    [titleLines]="s.titleLines"
+    [text]="s.text"
+    [scene]="s.scene"
+    [imageSide]="i % 2 === 0 ? 'left' : 'right'"
+    [link]="['/services', s.slug]"
+  ></app-service-block>
+</section>
+
+<app-engagement-model></app-engagement-model>
+
+<app-call-us></app-call-us>

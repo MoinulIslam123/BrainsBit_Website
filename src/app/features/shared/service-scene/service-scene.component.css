@@ -1,0 +1,57 @@
+/* shimmering skeleton lines */
+.shim {
+  background: linear-gradient(90deg, #e3e9f2 25%, #f4f7fb 50%, #e3e9f2 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2.4s linear infinite;
+}
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* progress rings draw themselves */
+.score {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: score 1.8s 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes score {
+  to {
+    stroke-dashoffset: var(--to, 2);
+  }
+}
+
+/* a cursor glides to the button and clicks it */
+.cursor {
+  animation: cursor 5.5s 1.2s ease-in-out infinite;
+}
+@keyframes cursor {
+  0% {
+    transform: translate(90px, 70px);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  38% {
+    transform: translate(0, 0);
+  }
+  46% {
+    transform: translate(0, 0) scale(0.82);
+  }
+  52% {
+    transform: translate(0, 0) scale(1);
+  }
+  88% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,31 @@
+<section class="wrap section">
+  <app-section-heading title="Our engagement model" [text]="intro"></app-section-heading>
+
+  <div class="mt-12 grid gap-5 lg:grid-cols-2">
+    <article
+      *ngFor="let m of models; let i = index"
+      appReveal="up"
+      [revealDelay]="i * 130"
+      class="flex flex-col rounded-[2rem] border border-line bg-white p-8 shadow-soft md:p-10"
+    >
+      <span class="grid h-14 w-14 place-items-center rounded-2xl bg-ink text-xl text-white">
+        <i class="fa-solid" [ngClass]="m.icon"></i>
+      </span>
+      <h3 class="mt-7 font-display text-2xl font-bold tracking-[-0.025em] text-ink md:text-[1.7rem]">{{ m.title }}</h3>
+      <p class="mt-4 flex-1 leading-relaxed">{{ m.text }}</p>
+
+      <p class="mt-8 flex items-center gap-3 rounded-2xl bg-brand-soft px-5 py-4 text-sm leading-snug text-ink">
+        <i class="fa-solid fa-circle-check text-lg text-brand"></i>
+        <span><span class="font-semibold">Best for:</span> {{ m.bestFor }}</span>
+      </p>
+    </article>
+  </div>
+
+  <!-- evaluate callout -->
+  <div appReveal="up" class="stage mt-5 flex flex-col gap-7 p-8 md:flex-row md:items-center md:justify-between md:p-12">
+    <h3 class="max-w-2xl font-display text-[clamp(1.7rem,3.2vw,2.6rem)] font-bold leading-[1.05] tracking-[-0.035em] text-white">
+      We provide the opportunity to evaluate our services before any formal engagement.
+    </h3>
+    <a routerLink="/contact" class="btn btn-light shrink-0">Talk to us</a>
+  </div>
+</section>

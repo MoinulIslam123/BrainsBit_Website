@@ -1,0 +1,17 @@
+<section class="border-b border-line bg-white py-10" aria-label="Our clients">
+  <p class="mb-7 text-center text-sm font-medium text-muted">Our clients</p>
+
+  <div
+    class="relative overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_12%,#000_88%,transparent)]"
+  >
+    <div class="flex w-max animate-marquee items-center hover:[animation-play-state:paused]">
+      <img
+        *ngFor="let logo of loop; let i = index"
+        [src]="logo"
+        alt=""
+        [attr.aria-hidden]="i >= clients.length ? 'true' : null"
+        class="mr-16 h-11 w-auto shrink-0 opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0"
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,188 @@
+/* Global styles: design tokens live in tailwind.config.js */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    @apply overflow-x-hidden bg-white font-sans text-[1.0625rem] text-muted antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-balance font-display text-ink;
+  }
+  ::selection {
+    background: #0072ce;
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid #2b94f2;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  /* ---- layout ---- */
+  .wrap {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  /* ---- type scale ---- */
+  .t-hero {
+    @apply font-display text-[clamp(2.7rem,6.4vw,5.6rem)] font-bold leading-[0.98] tracking-[-0.04em];
+  }
+  .t-page {
+    @apply font-display text-[clamp(2.4rem,5vw,4.4rem)] font-bold leading-[1] tracking-[-0.04em];
+  }
+  .t-h2 {
+    @apply font-display text-[clamp(2rem,4vw,3.4rem)] font-bold leading-[1.02] tracking-[-0.035em] text-ink;
+  }
+  .t-h3 {
+    @apply font-display text-xl font-semibold tracking-[-0.02em] text-ink md:text-[1.4rem];
+  }
+  .lead {
+    @apply text-lg leading-relaxed text-muted;
+  }
+
+  /* ---- buttons ---- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold transition duration-200;
+  }
+  .btn-primary {
+    @apply relative isolate overflow-hidden bg-gradient-to-r from-brand to-[#1a8ae6] text-white shadow-[0_10px_28px_-10px_rgba(0,114,206,0.9)] hover:-translate-y-0.5 hover:shadow-[0_16px_34px_-10px_rgba(0,114,206,1)];
+  }
+  /* light sweep across the button on hover */
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.38) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.75s ease;
+  }
+  .btn-primary:hover::after {
+    transform: translateX(120%);
+  }
+  .btn-ink {
+    @apply bg-ink text-white hover:-translate-y-0.5 hover:bg-ink-2;
+  }
+  .btn-light {
+    @apply bg-white text-ink hover:bg-brand-soft;
+  }
+  .btn-ghost {
+    @apply border border-line bg-white text-ink hover:border-brand hover:text-brand;
+  }
+
+  /* ---- forms ---- */
+  .form-field {
+    @apply block h-12 w-full rounded-xl border border-line bg-paper px-4 text-ink outline-none transition placeholder:text-slate-400 focus:border-brand focus:bg-white focus:ring-4 focus:ring-brand/15;
+  }
+
+  /* ---- the blue "stage" that holds every page's visual ---- */
+  .stage {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 2rem;
+    background:
+      radial-gradient(90% 70% at 15% 0%, #2b9bff 0%, rgba(43, 155, 255, 0) 60%),
+      linear-gradient(160deg, #0a7de0 0%, #0062b8 45%, #003d80 100%);
+    box-shadow:
+      0 50px 90px -40px rgba(0, 66, 140, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  .stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1.2px, transparent 1.6px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 78%);
+    mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 78%);
+  }
+
+  /* soft dotted texture for light sections */
+  .dots-soft {
+    background-image: radial-gradient(rgba(0, 114, 206, 0.18) 1.2px, transparent 1.6px);
+    background-size: 26px 26px;
+  }
+}
+
+/* animated scenes stay paused until they scroll into view (see InViewDirective) */
+.scene:not(.in-view) * {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Scroll reveal (see RevealDirective) ===== */
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.85s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.85s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal-up {
+  transform: translateY(32px);
+}
+.reveal-left {
+  transform: translateX(-44px);
+}
+.reveal-right {
+  transform: translateX(44px);
+}
+.reveal-scale {
+  transform: scale(0.94);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Cursor spotlight (see SpotlightDirective) ===== */
+.spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    420px circle at var(--x, 50%) var(--y, 50%),
+    var(--spot, rgba(43, 148, 242, 0.16)),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}

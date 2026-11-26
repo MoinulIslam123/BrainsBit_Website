@@ -1,0 +1,30 @@
+<app-page-header
+  title="About us"
+  subtitle="Who we are"
+  scene="about"
+></app-page-header>
+
+<!-- STATEMENT -->
+<section class="wrap section">
+  <p
+    appReveal="up"
+    class="max-w-5xl font-display text-[clamp(1.9rem,4vw,3.4rem)] font-semibold leading-[1.1] tracking-[-0.035em] text-ink"
+  >
+    BrainsBit is a premier provider of software development and testing services.
+  </p>
+
+  <p appReveal="up" [revealDelay]="150" class="lead mt-8 max-w-2xl md:ml-auto md:mt-12">
+    Having talented software engineers on board, we craft compelling web,
+    desktop, and mobile applications for our clients. Since our inception, we
+    have partnered with numerous companies and delivered operational gains to
+    startup, emerging, and established organizations in the United States and
+    Canada.
+  </p>
+</section>
+
+<app-feature-grid
+  title="Benefits of working with BrainsBit"
+  [items]="benefits"
+></app-feature-grid>
+
+<app-call-us></app-call-us>

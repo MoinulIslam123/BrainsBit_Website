@@ -1,0 +1,15 @@
+<article class="grid items-center gap-8 py-8 md:grid-cols-2 md:gap-16 lg:py-12">
+  <div appReveal="scale" [ngClass]="imageSide === 'left' ? 'md:order-1' : 'md:order-2'">
+    <app-stage class="aspect-[5/4] w-full">
+      <app-service-scene [kind]="scene"></app-service-scene>
+    </app-stage>
+  </div>
+
+  <div appReveal="up" [revealDelay]="140" [ngClass]="imageSide === 'left' ? 'md:order-2' : 'md:order-1'">
+    <h2 *ngIf="showTitle" class="t-h2 !text-[clamp(1.9rem,3.4vw,2.8rem)]">{{ title }}</h2>
+    <p class="lead" [ngClass]="{ 'mt-4': showTitle }">{{ text }}</p>
+    <a *ngIf="link" [routerLink]="link" class="btn btn-ink mt-7">
+      Learn more <i class="fa-solid fa-chevron-right text-[0.65rem]"></i>
+    </a>
+  </div>
+</article>

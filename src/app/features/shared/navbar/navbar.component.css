@@ -1,0 +1,34 @@
+/* animated underline for the desktop links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.875rem;
+  right: 0.875rem;
+  bottom: 0.2rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #0072ce, #2b94f2);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.nav-link:hover,
+.nav-link.active-link {
+  color: #0b1220;
+}
+.nav-link:hover::after,
+.nav-link.active-link::after {
+  transform: scaleX(1);
+}
+
+/* mobile drawer */
+.drawer-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.drawer-active {
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 3px 0 0 #2b94f2;
+}

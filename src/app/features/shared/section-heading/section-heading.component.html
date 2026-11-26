@@ -1,0 +1,4 @@
+<div appReveal="up" class="max-w-3xl" [ngClass]="{ 'mx-auto text-center': center }">
+  <h2 *ngIf="title" class="t-h2">{{ title }}</h2>
+  <p *ngIf="text" class="lead" [ngClass]="{ 'mt-4': title }">{{ text }}</p>
+</div>

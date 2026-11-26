@@ -1,0 +1,31 @@
+<section class="wrap pb-16 pt-4 md:pb-24">
+  <div appReveal="up" class="stage p-6 sm:p-10 lg:p-16">
+    <div class="absolute -right-24 -top-24 -z-10 h-80 w-80 animate-drift rounded-full bg-white/20 blur-[90px]"></div>
+
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+      <div class="text-white">
+        <h2 class="font-display text-[clamp(2.4rem,5vw,4.2rem)] font-bold leading-[0.98] tracking-[-0.04em] text-white">
+          Want us to call you?
+        </h2>
+        <p class="mt-5 max-w-md text-lg leading-relaxed text-white/80">
+          Tell us what you are building. We will get back to you with next steps.
+        </p>
+
+        <ul class="mt-9 space-y-4">
+          <li class="flex items-center gap-3">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-white text-brand"><i class="fa-solid fa-phone text-sm"></i></span>
+            <a [href]="'tel:' + company.phones[0]" class="font-medium transition-opacity hover:opacity-80">{{ company.phones[0] }}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-white text-brand"><i class="fa-solid fa-envelope text-sm"></i></span>
+            <a [href]="'mailto:' + company.email" class="font-medium transition-opacity hover:opacity-80">{{ company.email }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl bg-white p-6 shadow-lift sm:p-8">
+        <app-contact-form></app-contact-form>
+      </div>
+    </div>
+  </div>
+</section>

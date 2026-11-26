@@ -1,0 +1,55 @@
+<app-page-header
+  title="Contact us"
+  subtitle="Get in touch"
+  scene="contact"
+></app-page-header>
+
+<section class="wrap section">
+  <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
+    <!-- details -->
+    <div>
+      <h2 appReveal="up" class="t-h2">Tell us about your project</h2>
+
+      <ul class="mt-10 space-y-8">
+        <li appReveal="up" [revealDelay]="100" class="flex gap-4">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <i class="fa-solid fa-phone"></i>
+          </span>
+          <div>
+            <h3 class="t-h3">Give us a call</h3>
+            <p *ngFor="let phone of company.phones" class="mt-1">
+              <a [href]="'tel:' + phone" class="transition-colors hover:text-brand">{{ phone }}</a>
+            </p>
+          </div>
+        </li>
+
+        <li appReveal="up" [revealDelay]="200" class="flex gap-4">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <i class="fa-solid fa-envelope"></i>
+          </span>
+          <div>
+            <h3 class="t-h3">Send us an email</h3>
+            <p class="mt-1">
+              <a [href]="'mailto:' + company.email" class="transition-colors hover:text-brand">{{ company.email }}</a>
+            </p>
+          </div>
+        </li>
+
+        <li appReveal="up" [revealDelay]="300" class="flex gap-4">
+          <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-brand">
+            <i class="fa-solid fa-location-dot"></i>
+          </span>
+          <div>
+            <h3 class="t-h3">Visit us</h3>
+            <p class="mt-1 max-w-xs leading-relaxed">{{ company.address }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- form -->
+    <div appReveal="up" [revealDelay]="150" class="rounded-[2rem] border border-line bg-white p-6 shadow-soft sm:p-10">
+      <app-contact-form></app-contact-form>
+    </div>
+  </div>
+</section>
