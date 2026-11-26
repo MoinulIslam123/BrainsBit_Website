@@ -1,10 +1,14 @@
-<section class="relative overflow-hidden bg-gradient-to-b from-brand-soft/70 via-white to-white">
+<section
+  class="relative overflow-hidden bg-gradient-to-b from-brand-soft/70 via-white to-blue-50"
+>
   <!-- soft dotted texture, fading out -->
   <div
     class="dots-soft pointer-events-none absolute inset-x-0 top-0 h-[34rem] [mask-image:radial-gradient(ellipse_at_80%_10%,#000_10%,transparent_70%)]"
   ></div>
 
-  <div class="wrap relative grid items-center gap-10 pb-14 pt-36 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:pb-20 lg:pt-44">
+  <div
+    class="wrap relative grid items-center gap-10 pb-14 pt-36 lg:grid-cols-[1fr_1.05fr] lg:gap-14 lg:pb-20 lg:pt-44"
+  >
     <div class="animate-rise">
       <nav
         *ngIf="crumbs.length"
@@ -14,19 +18,26 @@
         <a routerLink="/" class="transition-colors hover:text-brand">Home</a>
         <ng-container *ngFor="let c of crumbs">
           <i class="fa-solid fa-chevron-right text-[0.55rem]"></i>
-          <a [routerLink]="c.link" class="transition-colors hover:text-brand">{{ c.label }}</a>
+          <a [routerLink]="c.link" class="transition-colors hover:text-brand">{{
+            c.label
+          }}</a>
         </ng-container>
         <i class="fa-solid fa-chevron-right text-[0.55rem]"></i>
         <span class="font-medium text-ink">{{ title }}</span>
       </nav>
 
       <h1 class="t-page">{{ title }}</h1>
-      <p *ngIf="subtitle" class="lead mt-5 max-w-xl md:text-xl">{{ subtitle }}</p>
+      <p *ngIf="subtitle" class="lead mt-5 max-w-xl md:text-xl">
+        {{ subtitle }}
+      </p>
 
       <div class="mt-8 empty:hidden"><ng-content></ng-content></div>
     </div>
 
-    <app-stage class="animate-rise aspect-[5/4] w-full" style="animation-delay: 0.15s">
+    <app-stage
+      class="animate-rise aspect-[5/4] w-full"
+      style="animation-delay: 0.15s"
+    >
       <app-header-scene [kind]="scene"></app-header-scene>
     </app-stage>
   </div>

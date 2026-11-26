@@ -1,8 +1,12 @@
-<section class="relative overflow-hidden bg-gradient-to-b from-brand-soft/70 via-white to-white">
+<section
+  class="relative overflow-hidden bg-gradient-to-b from-brand-soft/70 via-white to-white"
+>
   <div
     class="dots-soft pointer-events-none absolute inset-x-0 top-0 h-[40rem] [mask-image:radial-gradient(ellipse_at_85%_15%,#000_8%,transparent_68%)]"
   ></div>
-  <div class="absolute -left-40 top-40 h-96 w-96 animate-drift rounded-full bg-brand/10 blur-[120px]"></div>
+  <div
+    class="absolute -left-40 top-40 h-96 w-96 animate-drift rounded-full bg-brand/10 blur-[120px]"
+  ></div>
 
   <!-- circuit traces: the logo's line-and-node motif -->
   <svg
@@ -11,22 +15,69 @@
     fill="none"
     aria-hidden="true"
   >
-    <path class="trace" pathLength="1" d="M0 40 H200 L230 12 H430" stroke="currentColor" stroke-width="1.5" />
-    <rect class="node" style="--nd: 3s" x="430" y="6" width="12" height="12" rx="2.5" fill="currentColor" />
-    <path class="trace" pathLength="1" style="animation-delay: 0.9s" d="M0 74 H320 L350 46 H610" stroke="currentColor" stroke-width="1.5" />
-    <rect class="node" style="--nd: 3.4s" x="610" y="40" width="12" height="12" rx="2.5" fill="currentColor" />
+    <path
+      class="trace"
+      pathLength="1"
+      d="M0 40 H200 L230 12 H430"
+      stroke="currentColor"
+      stroke-width="1.5"
+    />
+    <rect
+      class="node"
+      style="--nd: 3s"
+      x="430"
+      y="6"
+      width="12"
+      height="12"
+      rx="2.5"
+      fill="currentColor"
+    />
+    <path
+      class="trace"
+      pathLength="1"
+      style="animation-delay: 0.9s"
+      d="M0 74 H320 L350 46 H610"
+      stroke="currentColor"
+      stroke-width="1.5"
+    />
+    <rect
+      class="node"
+      style="--nd: 3.4s"
+      x="610"
+      y="40"
+      width="12"
+      height="12"
+      rx="2.5"
+      fill="currentColor"
+    />
   </svg>
 
-  <div class="wrap relative grid items-center gap-12 pb-20 pt-36 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:pb-28 lg:pt-44">
+  <div
+    class="wrap relative grid items-center gap-12 pb-20 pt-36 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10 lg:pb-28 lg:pt-44"
+  >
     <div>
-      <h1 class="t-hero animate-rise">Your trusted software development partner</h1>
+      <h1 class="t-hero animate-rise">
+        Your trusted
+        <span
+          class="bg-gradient-to-r from-brand via-amber-300 to-orange-400 bg-clip-text text-transparent"
+        >
+          software development partner.
+        </span>
+      </h1>
 
-      <p class="lead animate-rise mt-7 max-w-xl md:text-xl" style="animation-delay: 0.12s">
-        A top tier software development team assisting owners and decision makers to
-        implement digital initiatives to achieve lasting financial success.
+      <p
+        class="lead animate-rise mt-7 max-w-xl md:text-xl"
+        style="animation-delay: 0.12s"
+      >
+        A top tier software development team assisting owners and decision
+        makers to implement digital initiatives to achieve lasting financial
+        success.
       </p>
 
-      <div class="animate-rise mt-9 flex flex-wrap gap-3" style="animation-delay: 0.24s">
+      <div
+        class="animate-rise mt-9 flex flex-wrap gap-3"
+        style="animation-delay: 0.24s"
+      >
         <a routerLink="/contact" class="btn btn-primary">Talk to our team</a>
         <a routerLink="/services" class="btn btn-ghost">Explore services</a>
       </div>
@@ -36,13 +87,18 @@
         style="animation-delay: 0.36s"
       >
         <div *ngFor="let f of facts">
-          <dt class="font-display text-lg font-semibold text-ink">{{ f.value }}</dt>
+          <dt class="font-display text-lg font-semibold text-ink">
+            {{ f.value }}
+          </dt>
           <dd class="mt-0.5 text-sm leading-snug text-muted">{{ f.label }}</dd>
         </div>
       </dl>
     </div>
 
-    <app-stage class="animate-rise aspect-[5/4] w-full lg:aspect-[11/10]" style="animation-delay: 0.2s">
+    <app-stage
+      class="animate-rise aspect-[5/4] w-full lg:aspect-[11/10]"
+      style="animation-delay: 0.2s"
+    >
       <div
         class="absolute left-1/2 top-1/2 h-[480px] w-[544px] -translate-x-1/2 -translate-y-1/2 scale-[0.58] min-[420px]:scale-[0.7] sm:scale-[0.9] lg:scale-[0.86]"
       >

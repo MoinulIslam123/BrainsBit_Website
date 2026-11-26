@@ -22,4 +22,10 @@ export class FooterComponent {
     { label: 'Careers', path: '/careers' },
     { label: 'Contact us', path: '/contact' },
   ];
+
+  socials = [
+    { name: 'LinkedIn', short: 'in', url: 'https://linkedin.com' },
+    { name: 'GitHub', short: 'GH', url: 'https://github.com' },
+    { name: 'X', short: 'X', url: 'https://x.com' },
+  ];
 }
